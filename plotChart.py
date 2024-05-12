@@ -1,8 +1,30 @@
 import matplotlib.pyplot as plt
+import re
+
+def extract_max_nanoseconds(log_file_path):
+    max_nanoseconds = 0
+    pattern = r"Time taken for serializedMapStatus: (\d+) nanoseconds"
+
+    with open(log_file_path, 'r') as file:
+        for line in file:
+            match = re.search(pattern, line)
+            if match:
+                nanoseconds = int(match.group(1))
+                if nanoseconds > max_nanoseconds:
+                    max_nanoseconds = nanoseconds
+    return max_nanoseconds
+
+log_file_10000 = '/mnt/spark-exp/output_10000.txt'
+log_file_50000 = '/mnt/spark-exp/output_50000.txt'
+log_file_100000 = '/mnt/spark-exp/output_100000.txt'
+
+max_lat_10000 = extract_max_nanoseconds(log_file_10000) / 1000000
+max_lat_50000 = extract_max_nanoseconds(log_file_50000) / 1000000
+max_lat_100000 = extract_max_nanoseconds(log_file_100000) / 1000000
 
 # Data
 x = [10000, 50000, 100000]
-y = [64, 161, 255]
+y = [max_lat_10000, max_lat_50000, max_lat_100000]
 
 # Create a line plot
 plt.plot(x, y)
