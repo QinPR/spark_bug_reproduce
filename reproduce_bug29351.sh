@@ -17,4 +17,4 @@ set -e
 
 
 # ======================================== 2. Plot the graph ===========================================
-python3 plot_Chart.py
+python3 plotChart.py
