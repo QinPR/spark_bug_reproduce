@@ -36,6 +36,7 @@ sudo apt-get install sbt -y
 
 # ======================================== 4. Install python package ===========================================
 cd ..
+sudo apt install python3-pip -y
 pip3 install matplotlib
 
 # ======================================== 5. Start Master & Slave ===========================================
