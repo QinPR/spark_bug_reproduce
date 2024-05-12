@@ -392,9 +392,22 @@ private[spark] class MapOutputTrackerMaster(
             val hostPort = context.senderAddress.hostPort
             logDebug("Handling request to send map output locations for shuffle " + shuffleId +
               " to " + hostPort)
+
+            // Start time
+            val startTime = System.nanoTime()
+
             val shuffleStatus = shuffleStatuses.get(shuffleId).head
-            context.reply(
-              shuffleStatus.serializedMapStatus(broadcastManager, isLocal, minSizeForBroadcast))
+            val serializedStatus = shuffleStatus.serializedMapStatus(broadcastManager, isLocal, minSizeForBroadcast)
+
+            // End time
+            val endTime = System.nanoTime()
+            
+            // Calculate elapsed time
+            val elapsedTime = endTime - startTime
+            logInfo(s"Time taken for serializedMapStatus: ${elapsedTime} nanoseconds")
+
+            context.reply(serializedStatus)
+
           } catch {
             case NonFatal(e) => logError(e.getMessage, e)
           }
