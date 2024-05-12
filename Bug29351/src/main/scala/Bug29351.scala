@@ -15,7 +15,7 @@ object Bug29351 {
 
     // Generate a larger dataset and increase key repetition
     val numItems = 100  // Increase number of items
-    val num_taks = 10000
+    val num_taks = 100000
 
     val data = (1 to numItems).map(i => ((i % 100), s"value_$i"))  // Increase key repetition by decreasing the modulus
     val rdd = spark.sparkContext.parallelize(data, numSlices = num_taks)  // Decrease number of slices
