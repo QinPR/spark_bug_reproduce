@@ -10,12 +10,12 @@ object Bug29351 {
     // Initialize SparkSession
     val spark = SparkSession.builder
       .appName("Trigger Shuffle Status Example")
-      .master("spark://127.0.1.1:7077")
+      .master("spark://0.0.0.0:7077")
       .getOrCreate()
 
     // Generate a larger dataset and increase key repetition
     val numItems = 100  // Increase number of items
-    val num_taks = 100000
+    val num_taks = 10000
 
     val data = (1 to numItems).map(i => ((i % 100), s"value_$i"))  // Increase key repetition by decreasing the modulus
     val rdd = spark.sparkContext.parallelize(data, numSlices = num_taks)  // Decrease number of slices

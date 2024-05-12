@@ -14,7 +14,7 @@ update-alternatives --config java
 # copy the path it shows here: /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
 echo "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> ~/.bashrc
-echo "export PATH=$JAVA_HOME/bin:$PATH" >> ~/.bashrc
+echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> ~/.bashrc
 source ~/.bashrc
 
 # ======================================== 2. Compile Spark ===========================================
@@ -22,7 +22,7 @@ echo "Compiling Spark...."
 ./build/mvn -DskipTests clean package &> spark_compile_output.tx
 
 echo "export SPARK_HOME=/mnt/spark-exp/spark_bug_reproduce" >> ~/.bashrc
-echo "export PATH=$PATH:$SPARK_HOME/bin" >> ~/.bashrc
+echo "export PATH=\$PATH:\$SPARK_HOME/bin" >> ~/.bashrc
 
 source ~/.bashrc
 
@@ -35,9 +35,12 @@ sudo apt-get update
 sudo apt-get install sbt -y
 
 # ======================================== 4. Install python package ===========================================
-pip3 install matplotlib -y
+cd ..
+pip3 install matplotlib
 
 # ======================================== 5. Start Master & Slave ===========================================
+
+cd spark_bug_reproduce
 ./sbin/start-master.sh
 
-./sbin/start-slave.sh spark://127.0.1.1:7077
+./sbin/start-slave.sh spark://0.0.0.0:7077

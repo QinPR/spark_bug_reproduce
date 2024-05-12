@@ -14,9 +14,9 @@ def extract_max_nanoseconds(log_file_path):
                     max_nanoseconds = nanoseconds
     return max_nanoseconds
 
-log_file_10000 = '/mnt/spark-exp/output_10000.txt'
-log_file_50000 = '/mnt/spark-exp/output_50000.txt'
-log_file_100000 = '/mnt/spark-exp/output_100000.txt'
+log_file_10000 = '/mnt/spark-exp/spark_bug_reproduce/output_10000.txt'
+log_file_50000 = '/mnt/spark-exp/spark_bug_reproduce/output_50000.txt'
+log_file_100000 = '/mnt/spark-exp/spark_bug_reproduce/output_100000.txt'
 
 max_lat_10000 = extract_max_nanoseconds(log_file_10000) / 1000000
 max_lat_50000 = extract_max_nanoseconds(log_file_50000) / 1000000
