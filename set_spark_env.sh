@@ -8,7 +8,7 @@ git checkout Bug29351
 # ======================================== 1. Set Java ===========================================
 sudo apt update
 
-sudo apt install openjdk-8-jdk
+sudo apt install openjdk-8-jdk -y
 
 update-alternatives --config java   
 # copy the path it shows here: /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
@@ -31,10 +31,10 @@ echo "deb https://repo.scala-sbt.org/scalasbt/debian /" | sudo tee /etc/apt/sour
 curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x99E82A75642AC823" | sudo apt-key add
 
 sudo apt-get update
-sudo apt-get install sbt
+sudo apt-get install sbt -y
 
 # ======================================== 4. Install python package ===========================================
-pip3 install matplotlib  
+pip3 install matplotlib -y
 
 # ======================================== 5. Start Master & Slave ===========================================
 ./sbin/start-master.sh
