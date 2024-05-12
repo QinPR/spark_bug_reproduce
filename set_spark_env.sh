@@ -18,7 +18,8 @@ echo "export PATH=$JAVA_HOME/bin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 
 # ======================================== 2. Compile Spark ===========================================
-./build/mvn -DskipTests clean package
+echo "Compiling Spark...."
+./build/mvn -DskipTests clean package &> spark_compile_output.tx
 
 echo "export SPARK_HOME=/mnt/spark-exp/spark_bug_reproduce" >> ~/.bashrc
 echo "export PATH=$PATH:$SPARK_HOME/bin" >> ~/.bashrc
