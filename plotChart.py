@@ -27,12 +27,13 @@ x = [10000, 50000, 100000]
 y = [max_lat_10000, max_lat_50000, max_lat_100000]
 
 # Create a line plot
-plt.plot(x, y)
+plt.plot(x, y, c="blue", label="bug version")
 
 # Add titles and labels
 plt.title('Peak Latency of `serializedMapStatus` vs # of Tasks')
 plt.xlabel('# of Tasks')
 plt.ylabel('Peak Latency (ms)')
+plt.legend()
 
 # Show the plot
 plt.savefig("./line_chart.png")
