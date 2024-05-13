@@ -3,7 +3,7 @@
 set -o pipefail
 set -e  
 
-git checkout Bug29351
+git checkout Bug29351_fix
 
 # ======================================== 1. Compile Spark ===========================================
 echo "Compiling Spark...."
