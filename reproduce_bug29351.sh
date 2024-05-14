@@ -16,5 +16,10 @@ set -e
 /mnt/spark-exp/spark_bug_reproduce/bin/spark-submit --conf "spark.executor.extraJavaOptions=-XX:+UseG1GC"   --class Bug29351   --master spark://0.0.0.0:7077   --num-executors 256   --executor-cores 1   --conf "spark.dynamicAllocation.enabled=false"   /mnt/spark-exp/spark_bug_reproduce/Bug_tests_jobs/bug29351_2.11_100000-0.1.jar &> output_100000.txt
 
 
+cd /mnt/spark-exp/spark_bug_reproduce
+./sbin/stop-master.sh
+./sbin/stop-slave.sh
+
+
 # ======================================== 2. Plot the graph ===========================================
 python3 plotChart.py
